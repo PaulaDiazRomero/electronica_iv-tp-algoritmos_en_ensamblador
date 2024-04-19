@@ -141,7 +141,27 @@ endfun posicion_maximo
 defun ordenar_en_sitio_menor_a_mayor
     push {r4-r11,lr}
     // Insertar código a continuación
-
+    MOV R4, #0   // Índice i
+0:
+    CMP R4, R0
+    BGE 4f
+    MOV R5, #0   // Índice j
+1:
+    CMP R5, R0
+    BGE 3f
+    LDR R2, [R1, R4, LSL#2]   // Calcula la diraccion como R1+R4, debiera ser R1 + 4*R4
+    LDR R3, [R1, R5, LSL#2]
+    CMP R2, R3
+    BGE 2f
+    STR R2, [R1, R5, LSL#2]  //Guardo los elementos en la memoria
+    STR R3, [R1, R4, LSL#2]
+2:
+    ADD R5, #1
+    B 1b
+3:
+    ADD R4, #1
+    B 0b
+4:
     // Retorno
     pop {r4-r11,pc}
 endfun ordenar_en_sitio_menor_a_mayor
