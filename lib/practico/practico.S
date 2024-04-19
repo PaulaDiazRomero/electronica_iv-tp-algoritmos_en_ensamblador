@@ -38,7 +38,7 @@
 defun suma
     push {r4-r11,lr}
     // Insertar código a continuación
-
+    ADD R0, R0, R1   
     // Retorno, antes R0 debe tener el valor correcto
     pop {r4-r11,pc}
 endfun suma
@@ -59,7 +59,27 @@ endfun suma
 defun sumatoria
     push {r4-r11,lr}
     // Insertar código a continuación
-
+    MOV R3, R0    // Muevo n a R3
+    MOV R4, R1    // Muevo b a R4
+    MOV R0, #0    // Inicializo las variables en 0, siendo R5 el índice i
+    MOV R1, #0
+    MOV R5, #0
+    B 3f
+0:
+    LDR R2,[R4, R5, LSL#2]
+    CMP R2, #0
+    BLT 1f
+    ADDS R0, R2
+    ADC R1, #0
+    B 2f
+1:
+    ADDS R0, R2
+    ADC R1, #-1
+2:
+    ADD R5, #1
+3:
+    CMP R5, R3
+    BLT 0b   
     // Retorno, antes R1:R0 debe tener el valor correcto
     pop {r4-r11,pc}
 endfun sumatoria
