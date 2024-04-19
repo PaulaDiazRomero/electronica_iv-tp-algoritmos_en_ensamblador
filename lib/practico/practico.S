@@ -100,7 +100,23 @@ endfun sumatoria
 defun posicion_maximo
     push {r4-r11,lr}
     // Insertar código a continuación
-
+    MOV R3, R0    // Muevo n a R3
+    MOV R0, #0    // Inicializo la variable en 0
+    MOV R4, #0    // Índice i en 0
+    MOV R5, #0
+    B 3f
+0:
+    LDR R2,[R1, R4, LSL#2]
+    CMP R2, R5
+    BGE 1f
+    B 2f
+1:  
+    MOV R0, R4
+2:    
+    ADD R4, #1
+3:
+    CMP R4, R3
+    BLT 0b
     // Retorno, antes R0 debe tener el valor correcto
     pop {r4-r11,pc}
 endfun posicion_maximo
