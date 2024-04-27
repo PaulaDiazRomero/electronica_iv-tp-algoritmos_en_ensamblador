@@ -112,6 +112,7 @@ defun posicion_maximo
     B 2f
 1:  
     MOV R0, R4
+    MOV R5, R2
 2:    
     ADD R4, #1
 3:
@@ -149,7 +150,7 @@ defun ordenar_en_sitio_menor_a_mayor
 1:
     CMP R5, R0
     BGE 3f
-    LDR R2, [R1, R4, LSL#2]   // Calcula la diraccion como R1+R4, debiera ser R1 + 4*R4
+    LDR R2, [R1, R4, LSL#2]   // Calcula la direccion como R1 + 4*R4
     LDR R3, [R1, R5, LSL#2]
     CMP R2, R3
     BGE 2f
