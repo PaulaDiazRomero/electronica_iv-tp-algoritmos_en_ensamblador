@@ -104,18 +104,16 @@ defun posicion_maximo
     MOV R0, #0    // Inicializo la variable en 0
     MOV R4, #0    // Índice i en 0
     MOV R5, #0
-    B 3f
+    B 2f
 0:
     LDR R2,[R1, R4, LSL#2]
     CMP R2, R5
-    BGE 1f
-    B 2f
-1:  
+    BLT 1f
     MOV R0, R4
     MOV R5, R2
-2:    
+1:    
     ADD R4, #1
-3:
+2:
     CMP R4, R3
     BLT 0b
     // Retorno, antes R0 debe tener el valor correcto
